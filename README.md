@@ -1,86 +1,88 @@
-# Primeros pasos en Solana
-![Banner](./images/SolanaBanner.jpg)
-Solana es una blockchain de capa 1, es decir, cuenta con su propia infraestructura y no depende de otras blockchains para funcionar. Se encuentra orientada al alto rendimiento, y fue creada para soportar aplicaciones descentralizadas a gran escala con costos mínimos y confirmaciones casi inmediatas. Su diseño prioriza la eficiencia en la ejecución y la paralelización de transacciones.
+# DevVault
 
-Rust es el lenguaje principal para desarrollar programas en Solana. A través de él se implementa la lógica on-chain utilizando el modelo de cuentas y programas de la red, permitiendo construir contratos inteligentes seguros, eficientes y altamente optimizables.
+## 🇬🇧 English
 
-Puedes comenzar dándole Fork a este repositorio (abajo te explicamos como 👇)
+DevVault is a Solana program built with **Rust and Anchor** that allows users to create a personal on-chain vault and manage entries using a simple CRUD system.
 
-Asegúrate de clonar este repositorio a tu cuenta usando el botón **`Fork`**.
+The program demonstrates core Solana development concepts such as **Program Derived Addresses (PDA)**, account management, and interaction through blockchain transactions.
 
-![fork](./images/fork.png)
+### Features
 
-* Puedes renombrar el repositorio a lo que sea que se ajuste con tu proyecto.
+- Create a personal vault (PDA)
+- Register entries inside the vault
+- Toggle entry state (active / inactive)
+- Remove entries
+- Store data on-chain
 
-## Solana Playground
-Solana Playground es un entorno de desarrollo online que permite escribir, compilar, desplegar y probar programas de Solana directamente desde el navegador, sin necesidad de instalar herramientas locales como Rust, Solana CLI o Anchor.
+### Technologies
 
-![Playground](./images/playground.png)
+- Rust
+- Anchor Framework
+- Solana Devnet
+- Solana Playground
+- TypeScript (for testing)
 
-Para abrir el **Playground** solo es necesario dar clic 👉 [Aquí](https://beta.solpg.io)
+### How it works
 
-## Configuración del entorno
+1. A user creates a **vault account** using a PDA derived from their wallet.
+2. The vault stores entries on-chain.
+3. Users can:
+   - add entries
+   - update entry state
+   - remove entries
+4. All interactions occur through **Solana transactions**.
 
-Primero conectaremos el entorno con la devnet, lo que tambien procederá a la creación de una wallet. Para eso daremos clic en donde dice **Not Conected**:
+### Program Instructions
 
-![playground1](./images/playground1.png)
+- `iniciar_vault` → Creates the user's vault account.
+- `registrar_entry` → Adds a new entry to the vault.
+- `alternar_estado` → Toggles the active state of an entry.
+- `remover_entry` → Removes an entry from the vault.
+- `ver_registros` → Displays stored entries.
 
-Saldrá la siguiente ventana donde daremos en el botón **Continue**:
+---
 
-![wallet](./images/wallet.png)
+## 🇪🇸 Español
 
-Como resultado se mostrará la siguiente información:
+DevVault es un programa desarrollado en **Solana utilizando Rust y el framework Anchor** que permite a los usuarios crear una bóveda personal en la blockchain y administrar registros mediante un sistema CRUD.
 
-![status](./images/status.png)
+Este proyecto demuestra conceptos fundamentales del desarrollo en Solana como **Program Derived Addresses (PDA)**, manejo de cuentas y la interacción con programas mediante transacciones en la blockchain.
 
-* En verde: el estado de la conexión y el entorno al que se encuentra conectado
+### Características
 
-* En amarillo: la la dirección de la wallet conectada
+- Crear una bóveda personal (PDA)
+- Registrar entradas dentro de la bóveda
+- Cambiar el estado de una entrada (activo / inactivo)
+- Eliminar entradas
+- Almacenar datos en la blockchain
 
-* En azul: la cantidad de tokens en la wallet
+### Tecnologías
 
-> ℹ️ ¿Quieres ver el ejemplo de un "Hola Mundo" en Solana?. Da clic aquí: 👉 [Ver Ejemplo](./build-deploy/README.md)
+- Rust
+- Anchor Framework
+- Solana Devnet
+- Solana Playground
+- TypeScript (para pruebas)
 
-> ℹ️ ¿Cuentas con una Wallet de [Phantom](https://phantom.com/) que deseas importar?, Da clic aquí para ver como hacerlo: 
+### Cómo funciona
 
-👉 [Como Importar una Wallet](./import-key-a-playground/README.md)
+1. Un usuario crea una **cuenta vault** utilizando un PDA derivado de su wallet.
+2. La bóveda almacena registros en la blockchain.
+3. Los usuarios pueden:
+   - agregar entradas
+   - actualizar el estado de una entrada
+   - eliminar entradas
+4. Todas las interacciones ocurren mediante **transacciones en Solana**.
 
-## ¿Listo para empezar?
+### Instrucciones del programa
 
-El primer paso es hacer `fork` al repositorio. Ya con el repositorio en tu cuenta lo siguiente que debes hacer es entrar a la carpeta `proyecto` y obtener el `permalink`:
+- `iniciar_vault` → Crea la cuenta de vault del usuario.
+- `registrar_entry` → Agrega una nueva entrada a la bóveda.
+- `alternar_estado` → Cambia el estado activo de una entrada.
+- `remover_entry` → Elimina una entrada.
+- `ver_registros` → Muestra los registros almacenados.
 
-![permalink](./images/permalink.png)
+---
+## Author / Autor
 
-El cual uniremos con el siguiente enlace en nuestro navegador de preferencia:
-
-```url
-https://beta.solpg.io/
-```
-
-Lo que nos dará algo parecido a:
-
-![url](./images/url.png)
-
-Al pulsar enter seremos enviados al `Solana Playground` con nuestro proyecto abierto:
-
-![pg](./images/pg.png)
-
-Para guardarlo solo damos clic en el boton `import` y asignamos un nombre:
-
-![import](./images/import.png)
-
-## ¿Como actualizo mi repositorio?
-
-Una vez que realices cambios o termines tu proyecto, es necesario que **copies todo el código**, ya con el código en el portapapeles nos dirigimos nuevamente a la carpeta proyecto de tu repositorio de github **donde se obtuvo el `permalink`**, donde entraremos al carpeta `src` y al archivo `lib.rs`:
-
-![edit](./images/edit.png)
-
-En `lib.rs` presionaremos el ícono en forma de lapiz (esquina superior derecha de la imagen 👆)
-
-Nuevamente seleccionamos todo el código pero ahora presionamos `ctrl + v` para pegar el código del `Playground`. Ya realizados los cambios presionamos el botón `Commit changes`:
-
-![commit](./images/commit.png)
-
-Nos aparecerá un menú de confirmación donde nuevamente presionamos el botón `Commit changes`:
-
-![commit2](./images/commit2.png)
+Javier Solis Martinez
